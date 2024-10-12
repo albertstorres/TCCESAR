@@ -49,9 +49,9 @@ public class TeacherAPI {
     public Teacher updateTeacher (@PathVariable("id") Long id, @RequestBody Teacher teacher) {
         Teacher foundTeacher = findTeacher(id);
 
-        foundTeacher.setNome(Optional.ofNullable(teacher.getNome()).orElse(foundTeacher.getNome()));
+        foundTeacher.setName(Optional.ofNullable(teacher.getName()).orElse(foundTeacher.getName()));
         foundTeacher.setCurso(Optional.ofNullable(teacher.getCurso()).orElse(foundTeacher.getCurso()));
-        foundTeacher.setSenha(Optional.ofNullable(teacher.getSenha()).orElse(foundTeacher.getSenha()));
+        foundTeacher.setPassword(Optional.ofNullable(teacher.getPassword()).orElse(foundTeacher.getPassword()));
 
         return teacherRepository.save(foundTeacher);
     }

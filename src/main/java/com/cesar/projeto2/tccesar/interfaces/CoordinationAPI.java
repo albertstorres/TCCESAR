@@ -2,6 +2,8 @@ package com.cesar.projeto2.tccesar.interfaces;
 
 import com.cesar.projeto2.tccesar.domain.CoordinationRepository;
 import com.cesar.projeto2.tccesar.domain.Coordination;
+import com.cesar.projeto2.tccesar.domain.Student;
+import com.cesar.projeto2.tccesar.domain.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +19,11 @@ public class CoordinationAPI {
 
     @Autowired
     CoordinationRepository coordinationRepository;
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    StudentAPI studentAPI;
 
     @GetMapping ()
     public List<Coordination> listCoordination () {
@@ -69,6 +76,11 @@ public class CoordinationAPI {
         Coordination foundCoordinator = findCoordinator(id);
 
         coordinationRepository.deleteById(id);
+    }
+
+    @PostMapping("/createStudent")
+    public Student createStudent (@RequestBody Student student) {
+        return studentAPI.createStudent(student);
     }
 
  }
